@@ -7,6 +7,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+generator prismaClassGenerator {
+  provider               = "prisma-class-generator"
+  dryRun                 = "false"
+  separateRelationFields = "false"
+}
+
 model Account {
   id                String  @id @default(cuid())
   userId            String  @map("user_id")
