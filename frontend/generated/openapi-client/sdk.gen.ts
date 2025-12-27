@@ -2,7 +2,7 @@
 
 import type { Client, Options as Options2, TDataShape } from './client';
 import { client } from './client.gen';
-import type { AppControllerTestUserData, AppControllerTestUserResponses, CoursesControllerCreateData, CoursesControllerCreateResponses, CoursesControllerDeleteData, CoursesControllerDeleteResponses, CoursesControllerFindAllData, CoursesControllerFindAllResponses, CoursesControllerFindOneData, CoursesControllerFindOneResponses, CoursesControllerUpdateData, CoursesControllerUpdateResponses } from './types.gen';
+import type { AppControllerTestUserData, AppControllerTestUserResponses, CategoriesControllerFindAllData, CategoriesControllerFindAllResponses, CoursesControllerCreateData, CoursesControllerCreateResponses, CoursesControllerDeleteData, CoursesControllerDeleteResponses, CoursesControllerFindAllData, CoursesControllerFindAllResponses, CoursesControllerFindOneData, CoursesControllerFindOneResponses, CoursesControllerUpdateData, CoursesControllerUpdateResponses, LecturesControllerCreateData, LecturesControllerCreateResponses, LecturesControllerDeleteData, LecturesControllerDeleteResponses, LecturesControllerFindOneData, LecturesControllerFindOneResponses, LecturesControllerUpdateData, LecturesControllerUpdateResponses, SectionsControllerCreateData, SectionsControllerCreateResponses, SectionsControllerDeleteData, SectionsControllerDeleteResponses, SectionsControllerFindOneData, SectionsControllerFindOneResponses, SectionsControllerUpdateData, SectionsControllerUpdateResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = Options2<TData, ThrowOnError> & {
     /**
@@ -53,3 +53,96 @@ export const coursesControllerUpdate = <ThrowOnError extends boolean = false>(op
         ...options.headers
     }
 });
+
+/**
+ * 새 강의 생성
+ */
+export const lecturesControllerCreate = <ThrowOnError extends boolean = false>(options: Options<LecturesControllerCreateData, ThrowOnError>) => (options.client ?? client).post<LecturesControllerCreateResponses, unknown, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/lectures/sections/{sectionId}/lectures',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * 개별 강의 삭제
+ */
+export const lecturesControllerDelete = <ThrowOnError extends boolean = false>(options: Options<LecturesControllerDeleteData, ThrowOnError>) => (options.client ?? client).delete<LecturesControllerDeleteResponses, unknown, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/lectures/{lectureId}',
+    ...options
+});
+
+/**
+ * 개별 강의 상세 정보
+ */
+export const lecturesControllerFindOne = <ThrowOnError extends boolean = false>(options: Options<LecturesControllerFindOneData, ThrowOnError>) => (options.client ?? client).get<LecturesControllerFindOneResponses, unknown, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/lectures/{lectureId}',
+    ...options
+});
+
+/**
+ * 개별 강의 수정
+ */
+export const lecturesControllerUpdate = <ThrowOnError extends boolean = false>(options: Options<LecturesControllerUpdateData, ThrowOnError>) => (options.client ?? client).patch<LecturesControllerUpdateResponses, unknown, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/lectures/{lectureId}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * 새 섹션 생성
+ */
+export const sectionsControllerCreate = <ThrowOnError extends boolean = false>(options: Options<SectionsControllerCreateData, ThrowOnError>) => (options.client ?? client).post<SectionsControllerCreateResponses, unknown, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/sections/courses/{courseId}/sections',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * 섹션 삭제
+ */
+export const sectionsControllerDelete = <ThrowOnError extends boolean = false>(options: Options<SectionsControllerDeleteData, ThrowOnError>) => (options.client ?? client).delete<SectionsControllerDeleteResponses, unknown, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/sections/{sectionId}',
+    ...options
+});
+
+/**
+ * 섹션 상세 정보
+ */
+export const sectionsControllerFindOne = <ThrowOnError extends boolean = false>(options: Options<SectionsControllerFindOneData, ThrowOnError>) => (options.client ?? client).get<SectionsControllerFindOneResponses, unknown, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/sections/{sectionId}',
+    ...options
+});
+
+/**
+ * 섹션 업데이트
+ */
+export const sectionsControllerUpdate = <ThrowOnError extends boolean = false>(options: Options<SectionsControllerUpdateData, ThrowOnError>) => (options.client ?? client).patch<SectionsControllerUpdateResponses, unknown, ThrowOnError>({
+    security: [{ scheme: 'bearer', type: 'http' }],
+    url: '/sections/{sectionId}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * 카테고리 리스트
+ */
+export const categoriesControllerFindAll = <ThrowOnError extends boolean = false>(options?: Options<CategoriesControllerFindAllData, ThrowOnError>) => (options?.client ?? client).get<CategoriesControllerFindAllResponses, unknown, ThrowOnError>({ url: '/categories', ...options });
